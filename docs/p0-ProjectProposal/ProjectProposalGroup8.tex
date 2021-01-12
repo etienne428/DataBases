@@ -1,0 +1,175 @@
+%% ================================================================
+%% # DBIS Databases Data Analysis Project Part 0 Template
+%% 
+%% Template for students to hand-in their databases exercise solutions.
+%% 
+%% [Databases and Information Systems Group](https://dbis.dmi.unibas.ch/)
+%%
+%% ## Usage
+%% 
+%% Fill in the required fields and write your submission
+%%
+%% ## Issues
+%%
+%% See dbisdbprojp0.sty for further information.
+%% ================================================================
+\documentclass{article}
+\usepackage{dbisdbprojp0}
+\usepackage[english]{babel}
+\usepackage{url}
+
+
+
+
+%% ================================================================
+%%
+%% General Information
+%%
+%% ================================================================
+%%
+%% Add your information here
+\course       {Databases}
+\semester     {Autumn 2020}
+\title        {Data Analysis Project\\P0: Project Idea}
+\subtitle     {Visualizing Traffic density data and comparing them to air pollution- and meteorological data in Basel, London and Los Angeles}
+\studenta     {Pascal Kunz}
+\studentb     {Etienne Mettaz}
+%\studentc     {Alan Turing}
+
+
+%% ================================================================
+%%
+%% Common Packages
+%%
+%% ================================================================
+%%
+%% Useful common packages for this course
+
+%% Drawing everything, with lots of libraries
+\usepackage{tikz}
+%% A library providing ER prefabs
+\usetikzlibrary{er}
+
+%% ================================================================
+%%
+%% Custom Packages
+%%
+%% ================================================================
+%%
+%% Add custom packages below:
+%%
+
+
+\begin{document}
+%% Required for the title
+\printfront
+%% ================================================================
+%%
+%% Description
+%%
+%% ================================================================
+
+\section{Introduction}
+
+During 2017-2019 the ETH Zurich collected traffic data by using over 23541 stationary detectors on roads in urban areas across 40 cities worldwide. Therefore it is the largest multi-city traffic dataset that is currently publicly available with a size of about 8GB.\\
+
+The Dataset provides information about the vehicle flow as well as the vehicular density on roads which are not only identifiable by their names but also their WGS84 coordinates.\\
+
+We want to focus our Project on three Major cities, namely Basel, London and Los Angeles.
+
+For the data Analysis we intend on comparing meteorological data as well as air pollution data to the UTD19 Dataset.\\
+
+The air pollution data is sourced from 3 trustworthy data sources publicly available which are produced from stationary measuring units in the concerning cities.
+
+\section{Datasets}
+
+\subsection{Traffic Information}
+
+The largest publicly available traffic dataset provided from the ETH Zurich.
+
+\begin{itemize}
+	\item Source: ETH Zurich, https://www.research-collection.ethz.ch/handle/20.500.11850/437802
+	\item Size: 7.81 GB
+	\item Format: CSV
+	\item Temporal: 2017 - 2019
+	\item Spatial: WGS84 coordinates, Basel, London, Los Angeles
+\end{itemize}
+
+\subsection{Air quality, Station Feldbergstrasse, St. Johannsplatz, Basel-Binnigen, Chrischona}
+
+Using the stationary air quality measuring entities on public roads, distributed across Basel.
+
+\begin{itemize}
+	\item Source: Canton Basel-Stadt,  \url{https://data.bs.ch/explore/dataset}
+	\item Size: approximately 200mb combined
+	\item Format: JSON or CSV or GeoJSON
+	\item Temporal: 2000-2020, half an hour Intervals
+	\item Spatial: Name and address of stationary air pollution measuring unit.
+\end{itemize}
+
+
+\subsection{Air quality London}
+
+Using the stationary air quality measuring entities on public roads, distributed across London. Note that there are a lot of roads that are being monitored and for each road / area a CSV document can be downloaded accordingly.
+
+\begin{itemize}
+	\item Source: London Air: \url{https://www.londonair.org.uk/london/asp/datadownload.asp}
+	\item Size: approximately 200mb combined, depending on how many roads will be analysed.
+	\item Format: CSV
+	\item Temporal: 2000-2020, half an hour Intervals
+	\item Spatial: Name of of Location of recorded data.
+\end{itemize}
+
+\subsection{Air quality Los Angeles}
+
+Using the stationary air quality measuring entities on public roads, distributed across the entire United States.  The datasets are publicly available and can be download for each specific year.
+
+\begin{itemize}
+	\item Source: EPA.gov: \url{https://aqs.epa.gov/aqsweb/airdata/download_files.html#Raw}
+
+	\item Size: approximately 200mb combined, depending on how many roads will be analysed.
+	\item Format: CSV
+	\item Temporal: 2000-2020, half an hour Intervals
+	\item Spatial: Name of of Location of recorded data.
+\end{itemize}
+
+
+\subsection{Weather specific data Basel, London, Los Angeles}
+
+Using a public meteorological database which holds the information about Temperature, Air Pressure, Humidity, Amount of rain etc.
+
+\begin{itemize}
+	\item MeteoBlue: \url{https://www.meteoblue.com/de/wetter/archive}
+	\item Size: approximately 10mb each
+	\item Format: CSV
+	\item Temporal: 2000-2020, hourly Intervals
+	\item Spatial: Basel, London, Los Angeles
+
+\end{itemize}
+
+
+
+
+\section{Analysis Goals}
+
+\begin{itemize}
+	\item Comparing the traffic density over certain time intervals and comparing them to environmental data, for example by using the stationary air pollution measurement across Basel, London and Los Angeles. The goal of the analysis is that we are able to identify clear peaks of air pollution which correlate with the vehicular density.
+	\item How is the air pollution affected by meteorological circumstances such as rain, temperature, wind. We want to be able to determine whether a clear dip of air pollution is visible for example when it has been heavily raining for several days.
+	\item compare areas with similar vehicular density. Do all these similar areas have a similar air quality?
+	\item Rush hour analysis across different cultures. Do all people get to work at the same times or do Swiss People for example get to work later.
+	\item Is there a correlation between heavy rain and the use of vehicles? E.g. Are there more cars on the road when it is raining.
+	\item Yet undecided: Map the vehicular density into a map by using the geographical data provided in the UTD19 Dataset. As of now we have been able to find some tools which require payment unfortunately. We will check back with the assistants in order get further information about the feasibility of this idea with regards to eventual access permissions to certain tools.
+	  
+
+\end{itemize}
+\section{Tools}
+\begin{itemize}
+	\item mySQL as DataBase-Tool
+	\item Python, for the data visualization
+	\item Maybe: Batch Geo, \url{https://de.batchgeo.com/}, for the map visualization. However it is not for free.
+	\item Git
+	\item Gant-Project Plan
+	
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,167 @@
+%% ================================================================
+%% # DBIS Databases Data Analysis Project Part 0 Template
+%% 
+%% Style for students to hand-in their Data Analysis project ideas.
+%% 
+%% [Databases and Information Systems Group](https://dbis.dmi.unibas.ch/)
+%%
+%% ## Usage
+%% 
+%% This package is designed for article documents and can be used by
+%% having `\usepackage{dbisdbprojp0}` in the preamble.
+%%
+%% ## Issues
+%%
+%% Issues shall be passed to the current maintainer.
+%% 
+%% ---
+%% 
+%% Version:     1.0.0 
+%% Year:        2019
+%% Maintainer:  Loris sauter
+%% 
+%% ## Changelog
+%%
+%% v1.0.0 - Initial Version, Loris Sauter
+%%
+%%
+%% ================================================================
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{dbisdbprojp0}[2019]
+
+%% ================================================================
+%%
+%% General Format Settings
+%%
+%% ================================================================
+\usepackage{a4wide}         % A4 paper format
+\usepackage[utf8]{inputenc} % Input format is utf8
+%% In case a windows text editor has issues recognizing this document,
+%% the option of package `inputenc` can be changed to `latin1` (ISO 8859-1)
+\usepackage[T1]{fontenc}    % Format of outptu PDF
+\usepackage[ngerman, english]{babel} % Language - both english and german supported
+\usepackage{fancyhdr}       % Required for headers
+\usepackage{lastpage}       % For Page X of Y in Header. Requires twice pdflatex execution
+\usepackage{multirow}
+%% ================================================================
+%%
+%% Useful packages included
+%%
+%% ================================================================
+\usepackage{enumerate}      % Fancification of enumerations
+
+\usepackage{amssymb}        % Beautiful math symbols
+\usepackage{amsmath}        % Beautiful math symbols
+
+\usepackage{wasysym}        % Additional symbols
+
+\usepackage{graphics}       % Graphics
+\usepackage{tikz}           % Tikz
+\usepackage{cleveref}       % Clever references are always smarter
+\usepackage[normalem]{ulem} % Relational Algebra: underline and underwave
+\usepackage{listings}
+
+%% ================================================================
+%%
+%% Header and Front Page Text to be set
+%%
+%% ================================================================
+
+%% Couse Name
+\newcommand*{\course}[1]{\def\inscourse{#1}}
+%% Semester Number
+\newcommand*{\semester}[1]{\def\inssemester{#1}}
+%% Participants Names
+\newcommand*{\studenta}[1]{\def\insstudenta{#1}\def\insgroup{\insstudenta}}
+\newcommand*{\studentb}[1]{\def\insstudentb{#1}\def\insgroup{\insstudenta,~\insstudentb}}
+\newcommand*{\studentc}[1]{\def\insstudentc{#1}\def\insgroup{\insstudenta,~\insstudentb,~\insstudentc}}
+%% Exercise Label
+\def\insexlbl{\iflanguage{english}{Data Analysis Project}{Datenanalyse Projekt}}
+%% Exercise Number
+\newcommand*{\exerciseno}[1]{\def\insexno{#1}}
+
+\@ifundefined{insstudentb}{\def\insstudentb{~}}{}
+\@ifundefined{insstudentc}{\def\insstudentc{~}}{}
+
+%% Data Analysis Project Related
+
+\newcommand{\subtitle}[1]{\def\inssubtitle{#1}}
+\def\institle{\@title}
+\newcommand{\database}[1]{}
+
+
+%% ================================================================
+%%
+%% Header setup
+%%
+%% ================================================================
+
+%% Header Design:
+%%
+%% Course                                                 Student A
+%% Semester                                               Student B
+%% Exercise X                                           Page x of y
+
+%% Left Side of Header
+\lhead{\inscourse~\inssemester\\\insexlbl}
+%% Right 
+\rhead{\insgroup\\Page~\thepage~of~\pageref{LastPage}}
+%% Height of header
+\usepackage[headheight=36pt]{geometry}
+%% Use the headers
+\pagestyle{fancy}
+%% No page number in center footer
+\cfoot{}
+
+%% ================================================================
+%%
+%% Title Page Setup
+%%
+%% ================================================================
+\newcommand*{\printfront}{
+\begin{center}
+	\thispagestyle{empty}
+    \sffamily
+	\vspace*{2cm}
+	\Huge{\textbf{\inscourse~\inssemester}}\\[2ex]
+	\Huge{\textbf{\institle}}\\[1ex]
+	\huge{\textit{\inssubtitle}}\\[2cm]
+	\normalsize
+	\@date\\[1ex]
+	\insgroup
+\end{center} 	
+}
+
+%% ================================================================
+%%
+%% Task Section Setup
+%%
+%% ================================================================
+%%
+%% Kindly borrowed from https://tex.stackexchange.com/a/394117
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{chngcntr}
+\newcounter{task}
+\titleclass{\task}{straight}[\section]
+\titleformat{\task}[hang]{\normalfont\Large\bfseries}{Task~\thetask}{1em}{}
+\titlespacing*{\task}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\renewcommand{\thetask}{\arabic{task}}
+%\counterwithin{task}{section}
+\contentsmargin{1em}
+\titlecontents*{task}[2em]{}{\bfseries\contentslabel{2em}}{}
+{\titlerule*[.5pc]{.}\contentspage}[]
+\dottedcontents{section}[4em]{}{2em}{.5pc}
+
+%% ================================================================
+%%
+%% Misc Layout
+%%
+%% ================================================================
+%%
+%% No indentation
+\setlength\parindent{0pt}
+
+\endinput
+%% End of file `dbisdbprojp0.sty`
