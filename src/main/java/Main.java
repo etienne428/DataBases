@@ -1,3 +1,4 @@
+import java.io.File;
 import java.sql.*;
 
 public class Main {
@@ -27,13 +28,13 @@ public class Main {
         String[] CSVFile = {"LinksCleaned.csv'", "ETHTrafficCleaned.csv'", "MVIcleaned.csv'", "AQ_cleaned.csv'"};//, "Weather_cleaned.csv'"};
         String[] tableName = {"Links", "UTD", "MVI", "AirPollution"};//, "Weather"};
 
-        for (int i = 0; i < 1/*CSVFile.length*/; i++) {
-            statement.setString(1, "'C:\\Users\\etien\\OneDrive - Universität Basel\\Math\\7.HS20" +
-                    "\\Database\\DB_Project\\DataBases\\src\\main\\resources\\AQ_cleaned_short.csv'");
-            statement.setString(2, tableName[3]);
-            statement.addBatch();
-        }
-        statement.executeBatch();
+        statement.executeUpdate("LOAD DATA INFILE 'src\\main\\resources\\AQ_cleaned_short.csv' INTO TABLE AirPollution FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n' IGNORE 1 LINES");
+//        for (int i = 0; i < 1/*CSVFile.length*/; i++) {
+//            statement.setString(1, "'src\\main\\resources\\AQ_cleaned_short.csv'");
+//            statement.setString(2, tableName[3]);
+//            statement.addBatch();
+//        }
+//        statement.executeBatch();
         statement.close();
     }
 
