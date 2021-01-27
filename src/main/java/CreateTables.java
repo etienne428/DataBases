@@ -1,24 +1,23 @@
 public enum CreateTables {
-    weatherTable("CREATE TABLE Weather ( \n" +
-            "    Location         VARCHAR(15)   NOT NULL, \n" +
-            "    Date             VARCHAR(15)   NOT NULL,\n" +
-            "    Time             VARCHAR(4)    NOT NULL,\n" +
-            "    Temperature      FLOAT,\n" +
-            "    WindSpeed        FLOAT,\n" +
-            "    Precipitation    FLOAT,\n" +
-            "    RelativeHumidity FLOAT,\n" +
-            "    WindDirection    FLOAT,\n" +
-            "    AirPressure      FLOAT,\n" +
-            "    CloudCoverage    FLOAT,\n" +
-            "    FOREIGN KEY (Location) REFERENCES Location (CityName) , \n" +
-            "    PRIMARY KEY (Location, Date, Time) \n" +
-            " ) ; "),
     locationTable("CREATE TABLE Location(\n" +
             "    CityName          VARCHAR(15) NOT NULL,\n" +
             "    PopulationDensity FLOAT,\n" +
             "    Population        INT,\n" +
             "    PRIMARY KEY (CityName)\n" +
             ");"),
+    weatherTable("CREATE TABLE Weather " +
+            "(Location         VARCHAR(15)   NOT NULL," +
+            " Date             VARCHAR(15)   NOT NULL," +
+            " Time             VARCHAR(4)    NOT NULL," +
+            " Temperature      FLOAT," +
+            " WindSpeed        FLOAT," +
+            " Precipitation    FLOAT," +
+            " RelativeHumidity FLOAT," +
+            " WindDirection    FLOAT," +
+            " AirPressure      FLOAT," +
+            " CloudCoverage    FLOAT," +
+            " FOREIGN KEY (Location) REFERENCES Location (CityName)," +
+            " PRIMARY KEY (Location, Date, Time))"),
     airPollutionTable("CREATE TABLE AirPollution(\n" +
             "    Location VARCHAR(15) NOT NULL,\n" +
             "    Date VARCHAR(12) NOT NULL,\n" +
@@ -30,6 +29,21 @@ public enum CreateTables {
             "    Latitude FLOAT,\n" +
             "    PRIMARY KEY (Date, Time, SiteCode, Species),\n" +
             "    FOREIGN KEY (Location) REFERENCES Location(CityName)\n" +
+            ");"),
+    detectorsTable("CREATE TABLE Detectors(\n" +
+            "    DetID VARCHAR(15) NOT NULL,\n" +
+            "    length FLOAT,\n" +
+            "    position FLOAT,\n" +
+            "    fclass VARCHAR(15),\n" +
+            "    road VARCHAR(15),\n" +
+            "    lim INT,\n" +
+            "    cityCode VARCHAR(20) NOT NULL,\n" +
+            "    Lanes INT,\n" +
+            "    LinkID INT,\n" +
+            "    Longitude FLOAT,\n" +
+            "    Latitude FLOAT,\n" +
+            "    FOREIGN KEY (cityCode) REFERENCES Location(CityName),\n" +
+            "    PRIMARY KEY (DetID)\n" +
             ");"),
     UTDTable("CREATE TABLE UTD(\n" +
             "    Date VARCHAR(15) NOT NULL,\n" +
@@ -67,21 +81,6 @@ public enum CreateTables {
             "    PRIMARY KEY(SiteCode, SiteName, Direction, Date, Time, Location, LaneCode),\n" +
             "    FOREIGN KEY(Location) REFERENCES Location(CityName)\n" +
             ");"),
-    detectorsTable("CREATE TABLE Detectors(\n" +
-            "    DetID VARCHAR(15) NOT NULL,\n" +
-            "    length FLOAT,\n" +
-            "    position FLOAT,\n" +
-            "    fclass VARCHAR(15),\n" +
-            "    road VARCHAR(15),\n" +
-            "    lim INT,\n" +
-            "    cityCode VARCHAR(20) NOT NULL,\n" +
-            "    Lanes INT,\n" +
-            "    LinkID INT,\n" +
-            "    Longitude FLOAT,\n" +
-            "    Latitude FLOAT,\n" +
-            "    FOREIGN KEY (cityCode) REFERENCES Location(CityName),\n" +
-            "    PRIMARY KEY (DetID)\n" +
-            ");"),
     linksTable("CREATE TABLE Links(\n" +
             "    DetID VARCHAR(20) NOT NULL,\n" +
             "    Longitude FLOAT,\n" +
@@ -95,8 +94,12 @@ public enum CreateTables {
             "    FOREIGN KEY(CityCode) REFERENCES Location(CityName),\n" +
             "    FOREIGN KEY(DetID) REFERENCES Detectors(DetID)\n" +
             ");");
-
-
+    String table;
     CreateTables(String s) {
+        table = s;
+    }
+
+    public String getTable() {
+        return table;
     }
 }
